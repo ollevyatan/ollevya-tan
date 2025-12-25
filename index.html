@@ -1,83 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Three.js - Shiny Cube Menu</title>
+    <title>Ollevya's Portfolio</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-        body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-box;}
-        #abt-overlay, #proj-overlay {
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); z-index: 2000; 
-            justify-content: center; 
-            align-items: center;
-        }
-        .content { 
-            display: block;
-            margin: 40px;
-            color: #FAFAFA; 
-            background: #001a2d;  
-            border-radius: 20px; 
-            width: auto;
-            height: auto;
-            text-align: center; 
-            font-family: sans-serif;
-            list-style-type: none; }
-
-        img {width: 250px; height: 300px; padding: 20px; border-radius: 90px;}
-
-        a {text-decoration: none; }
-        a:link { color: white;}
-        a:hover { font-style: italic;}
-        a:visited { color: white;}
-
-        #abttable {
-            width: 100%;
-            list-style-type: none;
-            table-layout: fixed;
-            line-height: 30px;
-        }
-        #projtable {
-            width: 100%;
-            line-height: 30px;
-            list-style-type: none;
-            table-layout: fixed;
-        }
-        
-
-        button { 
-            cursor: pointer; 
-            margin: 20px;
-            padding: 10px 20px; 
-            background: #36454F; 
-            color: white; 
-            border: none; 
-            border-radius: 5px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
 
     <div id="abt-overlay">
         <div class="content">
             <h1>About Me</h1>
-            <img src="pfp.jpeg" alt="">
-            <p><b>Hi</b> My name is Ollevya, Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat laborum numquam alias cumque, voluptate fuga! Aliquid adipisci sed . I also enjoy craftsmanship.</p>
             <table id="abttable">
-                <tr>
-                    <td><h3>Skills</h3></td>
+                 <tr>
+                    <td rowspan="3">
+                        <img src="pfp.jpeg" alt="">
+                    </td>
                     <td>
+                        <p><b>Hi, my name is Ollevya Tan</b>. Whether writing clean code or refining a 3D interface, I believe that great work comes from a mix of logic and creativity. I also enjoy craftsmanship and constant pursuit of learning something new daily.</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h3>Skills</h3>
                         <li>Python, HTML, SQL</li>
                         <li>UI path, Linux, Cisco</li>
                         <li>Microsoft office, Power BI, Tableau</li>
                     </td>
                 </tr>
-                
+
                 <tr>
-                    <td><h3>Contact</h3></td>   
                     <td> 
+                        <h3>Contact</h3>
                         <li>ollevya23@gmail.com</li>
                         <li><b><a href="https://www.linkedin.com/in/ollevya-undefined-71a843252/details/experience/">Linkedin</a></b></li>
                         <li><b><a href="Resume.pdf">Resume</a></b></li>
@@ -97,29 +53,21 @@
                  <td><h2>Project 2</h2></td> 
                  <td><h2>Project 3</h2></td>    
                 </tr>
+                
                 <tr>
                     <td>
                         <h3>Designed SQL database for soccer clubs</h3>
-                    </td>
-                    <td>
-                        <h3>File handling using Python</h3>
-                    </td>
-                    <td>
-                        <h3>Digital Portfolio</h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <p>As a team, we designed table relationships, defined appropriate data types, populated
-                            structured data, and built a functional database using SQL Server Management Studio to store.</p>
+                        structured data, and built a functional database using SQL Server Management Studio to store.</p>
                     </td>
-                    <td>    
-                            <p>I automated file handling by downloading files from FTP server, organising directories, encrypting and decrypting files, 
-                            logging access activity, and using Task Scheduler to automate workflow.</p>
+                    <td><h3>File handling using Python</h3>    
+                        <p>Automated file handling by downloading files from FTP server, organising directories, encrypting and decrypting files, 
+                        logging access activity, and using Task Scheduler to automate workflow and reduce manual troubleshooting time.</p>
                     </td>    
                     <td>
-                            <p>For this project I used VScode, Three.js and self-taught JavaScript, 
-                            while leveraging AI tools to assist in building and refining the portfolio.</p>
+                        <h3>Hardened Linux OS</h3>
+                        <p>Install firewall and antivirus software, automate regular audits, edit configuration SSH to disable root and password login, 
+                        change default port, and using security audit tools to verify security policies are disabled and identifying weakness.</p>
                     </td>
                 </tr>
             </table>
@@ -149,7 +97,7 @@
         const settings = {
             category: 'Navigate',
             home: () => {
-                camera.position.set(0, 0, 800);
+                camera.position.set(0, 300, 800);
                 controls.target.set(0, 0, 0);
                 if(myPicture) myPicture.visible = false;
                 controls.update();
@@ -161,14 +109,14 @@
         function init() {
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
-            camera.position.set(0, 0, 800);
+            camera.position.set(0, 300, 800);
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
 
-            // --- ENVIRONMENT (This makes it look like the Lottie cube) ---
+            //ENVIRONMENT 
             const environment = new RoomEnvironment();
             const pmremGenerator = new THREE.PMREMGenerator(renderer);
             scene.environment = pmremGenerator.fromScene(environment).texture;
@@ -176,7 +124,7 @@
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
 
-            // --- SHINY METALLIC CUBE ---
+            //SHINY METALLIC CUBE
             const geometry = new RoundedBoxGeometry(250, 250, 250, 20, 20);
             const material = new THREE.MeshStandardMaterial({ 
                 color: 0x36454F, 
@@ -185,6 +133,32 @@
             });
             cube = new THREE.Mesh(geometry, material);
             scene.add(cube);
+
+            //DUST GEOMETRY
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 2500; // 
+
+            const posArray = new Float32Array(particlesCount * 3); 
+
+            //SCATTER
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 3000; 
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            //DUST MATERIAL
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 3,           
+                color: 0xffffff, 
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending 
+            });
+
+            //ADD TO SCENE
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
 
             loadFontAndAttachText();
 
@@ -209,14 +183,14 @@
                 const textMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.5 });
 
                 // ABOUT Text (Front)
-                const abtGeo = new THREE.ShapeGeometry(font.generateShapes('ABOUT', 40));
+                const abtGeo = new THREE.ShapeGeometry(font.generateShapes('ABOUT', 35));
                 centerGeometry(abtGeo);
                 const abtMesh = new THREE.Mesh(abtGeo, textMat);
                 abtMesh.position.z = 126;
                 cube.add(abtMesh);
 
                 // OLLEVYA TAN Text (Top Face)
-                const nameGeo = new THREE.ShapeGeometry(font.generateShapes('O.T', 50)); // Slightly smaller size to fit
+                const nameGeo = new THREE.ShapeGeometry(font.generateShapes('O.T', 50)); 
                 centerGeometry(nameGeo);
                 nameGeo.rotateX(-Math.PI / 2); 
                 const nameMesh = new THREE.Mesh(nameGeo, textMat);
@@ -225,12 +199,22 @@
                 cube.add(nameMesh);
 
                 // PROJECT Text (Right Side)
-                const projGeo = new THREE.ShapeGeometry(font.generateShapes('PROJECT', 40));
+                const projGeo = new THREE.ShapeGeometry(font.generateShapes('PROJECT', 35));
                 centerGeometry(projGeo);
                 const projMesh = new THREE.Mesh(projGeo, textMat);
                 projMesh.position.x = 126;
                 projMesh.rotation.y = Math.PI / 2;
                 cube.add(projMesh);
+
+                const catGeo = new THREE.ShapeGeometry(font.generateShapes('₍^. .^₎', 40)); 
+                centerGeometry(catGeo);
+                const catMesh = new THREE.Mesh(catGeo, textMat);
+                catMesh.position.x = 0; 
+                catMesh.position.y = -126;
+                catMesh.position.z = 0;
+                catMesh.rotation.x = Math.PI / 2; 
+                cube.add(catMesh);
+
             });
         }
 
@@ -268,6 +252,13 @@
             if (cube) cube.rotation.y += 0.005; 
             controls.update();
             renderer.render(scene, camera);
+
+            if (particlesMesh) {
+                particlesMesh.rotation.y += 0.001; // Very slow rotation for the dust
+                particlesMesh.rotation.x += 0.0005; // Optional: adds a slight vertical drift
+            }
+            
+
         }
     </script>
 </body>
