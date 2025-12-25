@@ -25,7 +25,7 @@ a:link { color: #FAFAFA;}
 a:hover { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);}
 a:visited { color: #FAFAFA;}
 
-td { border: 1px solid wheat; padding: 10px;}
+td {padding: 10px;}
 
 #abttable {
     width: 100%;
