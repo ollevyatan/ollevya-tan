@@ -16,7 +16,8 @@ body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-bo
     width: auto;
     height: auto;
     text-align: center; 
-    list-style-type: none; }
+    list-style-type: none; 
+}
 
 img {width: 280px; height: 350px; border-radius: 50px;}
 
@@ -33,6 +34,7 @@ td {padding: 10px;}
     table-layout: fixed;
     line-height: 20px;
 }
+
 #projtable {
     padding: 20px;
     width: 100%;
@@ -41,7 +43,6 @@ td {padding: 10px;}
     table-layout: fixed;
 }
 
-
 button { 
     cursor: pointer; 
     margin: 20px;
@@ -49,7 +50,9 @@ button {
     background: #36454F; 
     color: #FAFAFA; 
     border: none; 
-    border-radius: 5px;}
+    border-radius: 5px;
+}
 
 button:hover{
-    box-shadow: 0 0 20px rgba(122, 120, 120, 0.8);}
+    box-shadow: 0 0 20px rgba(122, 120, 120, 0.8);
+}
