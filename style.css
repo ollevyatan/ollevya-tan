@@ -41,7 +41,7 @@ a:visited { color: #FAFAFA;}
     table-layout: fixed;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-height: 800px) {
     img {width: 170px; height: 230px;}
 
     #abttable td , #projtable td { display: block; width: 100%;}
