@@ -41,38 +41,20 @@ a:visited { color: #FAFAFA;}
     table-layout: fixed;
 }
 
-@media (max-width: 600px), (max-height: 800px) {
+@media (max-width: 600px) {
     img {width: 170px; height: 230px;}
 
     #abttable td , #projtable td { display: block; width: 100%;}
 
-    #close-abt { 
-    background-color: transparent !important;
-    background: none !important;
-    box-shadow: none !important;
-    position: fixed; 
-    top: -5px;       
-    right: 35px;
-    opacity: 0.5;
-}
-    #close-proj { 
-    background-color: transparent !important;
-    background: none !important;
-    box-shadow: none !important;
-    position: fixed; 
-    top: 15px;       
-    right: 30px;
-    opacity: 0.5;
-
-}
 }
 
 #close-abt, #close-proj { 
     cursor: pointer; 
-    margin: 20px;
-    padding: 10px 20px; 
+    margin: 10px;
+    padding: 7px 14px; 
     background: #36454F; 
     color: #FAFAFA; 
+    font-size: 10px;
     border: none; 
     border-radius: 5px;
 }
