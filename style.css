@@ -9,6 +9,7 @@ body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-bo
     align-items: center;
 }
 .content { 
+    padding: 10px;
     margin: 40px;
     color: #FAFAFA; 
     background: radial-gradient(#13181c6d, #36454f6e, #a4a2a26d);  
@@ -19,38 +20,54 @@ body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-bo
     list-style-type: none; 
 }
 
-img {width: 280px; height: 350px; border-radius: 50px;}
+img {width: 260px; height: 320px; border-radius: 50px;}
 
 a {text-decoration: none; }
 a:link { color: #FAFAFA;}
 a:hover { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);}
 a:visited { color: #FAFAFA;}
 
-td {padding: 10px;}
 
 #abttable {
+    margin-top: 20px;
     width: 100%;
     list-style-type: none;
     table-layout: fixed;
-    line-height: 20px;
 }
 
 #projtable {
-    padding: 20px;
     width: 100%;
-    line-height: 20px;
     list-style-type: none;
     table-layout: fixed;
 }
 
 @media (max-width: 600px) {
-  #abttable td, #projtable td { 
-    display: block; 
-    width: 100%; 
-  }
+    img {width: 170px; height: 230px;}
+
+    #abttable td , #projtable td { display: block; width: 100%;}
+
+    #close-abt { 
+    background-color: transparent !important;
+    background: none !important;
+    box-shadow: none !important;
+    position: fixed; 
+    top: -5px;       
+    right: 35px;
+    opacity: 0.5;
+}
+    #close-proj { 
+    background-color: transparent !important;
+    background: none !important;
+    box-shadow: none !important;
+    position: fixed; 
+    top: 15px;       
+    right: 30px;
+    opacity: 0.5;
+
+}
 }
 
-button { 
+#close-abt, #close-proj { 
     cursor: pointer; 
     margin: 20px;
     padding: 10px 20px; 
@@ -60,6 +77,6 @@ button {
     border-radius: 5px;
 }
 
-button:hover{
+#close-abt:hover, #close-proj:hover{
     box-shadow: 0 0 20px rgba(122, 120, 120, 0.8);
 }
