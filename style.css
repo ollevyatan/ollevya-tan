@@ -1,5 +1,5 @@
 body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-box; font-family: sans-serif;}
-#abt-overlay, #proj-overlay {
+#abt-overlay,#con-overlay, #proj-overlay {
     display: none; 
     position: fixed; 
     top: 0; left: 0; 
@@ -22,7 +22,7 @@ body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-bo
 
 img {width: 260px; height: 320px; border-radius: 50px;}
 
-a {text-decoration: none; }
+a {text-decoration: none;}
 a:link { color: #FAFAFA;}
 a:hover { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);}
 a:visited { color: #FAFAFA;}
@@ -35,11 +35,19 @@ a:visited { color: #FAFAFA;}
     table-layout: fixed;
 }
 
+#contact {
+    padding-right: 50px;
+    width: 100%;
+    list-style-type: none;
+    line-height: 30px;
+}
+
 #projtable {
     width: 100%;
     list-style-type: none;
     table-layout: fixed;
 }
+
 
 @media (max-width: 600px) {
     img {width: 170px; height: 230px;}
@@ -48,7 +56,7 @@ a:visited { color: #FAFAFA;}
 
 }
 
-#close-abt, #close-proj { 
+#close-abt, #close-con, #close-proj { 
     cursor: pointer; 
     margin: 10px;
     padding: 7px 14px; 

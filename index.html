@@ -17,7 +17,7 @@
                         <img src="pfp.jpeg" alt="">
                     </td>
                     <td>
-                        <p><b>Hi, my name is Ollevya Tan</b>. Whether writing clean code or refining a 3D interface, I believe that great work comes from a mix of logic and creativity. I also enjoy craftsmanship and constant pursuit of learning something new daily.</p>
+                        <p><b>Hi, my name is Ollevya Tan.</b> Whether writing clean code or refining a 3D interface, I believe that great work comes from a mix of logic and creativity. I also enjoy craftsmanship and constant pursuit of learning something new daily.</p>
                     </td>
                 </tr>
 
@@ -28,26 +28,31 @@
                         <li>Cisco, Microsoft office, Power BI, Tableau</li>
                     </td>
                 </tr>
-
-                <tr>
-                    <td> 
-                        <h3>Contact</h3>
-                        <li>ollevya23@gmail.com</li>
-                        <li><b><a href="https://www.linkedin.com/in/ollevya-undefined-71a843252/details/experience/">Linkedin</a></b></li>
-                        <li><b><a href="Resume.pdf">Resume</a></b></li>
-                    </td>
-                </tr>
  
             </table>       
             <button id="close-abt">Close</button>
         </div>
     </div>
+
+    <div id="con-overlay">
+        <div class="content">
+            <div id="contact">   
+                <h3>Contact</h3>
+                <li>ollevya23@gmail.com</li>
+                <li><b><a href="https://www.linkedin.com/in/ollevya-undefined-71a843252/details/experience/">Linkedin &#8594</a> </b></li>
+                <li><b><a href="Resume.pdf">Resume &#8594</a></b></li>
+                
+            </div>
+            <button id="close-con">Close</button>
+        </div>
+    </div>
+
     <div id="proj-overlay">
         <div class="content">
             <table id="projtable">
                 <tr>
                     <td>
-                        <h2><a href="Designed SQL database for soccer clubs.pdf">Project 1</a></h2>
+                        <h2><a href="Designed SQL database for soccer clubs.pdf">Project 1 &#8594</a></h2>
                         <h3>Designed SQL database for soccer clubs</h3>
                         <p>As a team, we developed SSMS structured database with optimized table relationships. 
                         I also used Trello to manage each component development timeline to track progress effectively.</p>
@@ -56,7 +61,7 @@
                 
                 <tr>
                     <td>
-                        <h2><a href="Storage Management with Python.pdf">Project 2</a></h2>
+                        <h2><a href="Storage Management with Python.pdf">Project 2 &#8594</a></h2>
                         <h3>Storage Management using Python</h3>    
                         <p>Automated secure FTP transfers and file encryption, 
                         logging access activity using Task Scheduler to reduce manual troubleshooting time.</p>
@@ -65,7 +70,7 @@
                 
                 <tr>
                     <td>
-                        <h2><a href="Harden Linux OS.pdf">Project 3</a></h2>
+                        <h2><a href="Harden Linux OS.pdf">Project 3 &#8594</a></h2>
                         <h3>Hardened Linux OS</h3>
                         <p>Install firewall and antivirus software,  edit SSH configurations, 
                         automate regular audits to verify security policies adhered and identify weakness.</p>
@@ -167,6 +172,7 @@
 
             document.getElementById('close-abt').onclick = () => document.getElementById('abt-overlay').style.display = 'none';
             document.getElementById('close-proj').onclick = () => document.getElementById('proj-overlay').style.display = 'none';
+            document.getElementById('close-con').onclick = () => document.getElementById('con-overlay').style.display = 'none';
 
             window.addEventListener('resize', onWindowResize);
             animate();
@@ -229,9 +235,13 @@
         function setupGUI() {
             const gui = new GUI();
             gui.add(settings, 'home').name('🏠 Home');
-            gui.add(settings, 'category', ['Navigate', 'About', 'Projects']).name('Menu').onChange(val => {
+            gui.add(settings, 'category', ['Navigate', 'About','Contact', 'Projects']).name('Menu').onChange(val => {
                 if (val === 'About') {
                     document.getElementById('abt-overlay').style.display = 'flex';
+                    
+                }
+                if (val === 'Contact') {
+                    document.getElementById('con-overlay').style.display = 'flex';
                     
                 }
                 if (val === 'Projects') {
