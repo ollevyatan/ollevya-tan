@@ -52,7 +52,7 @@ a:visited { color: #FAFAFA;}
 @media (max-width: 600px) {
     img {width: 170px; height: 230px;}
 
-    #abttable td , #projtable td { display: block; width: 100%;}
+    #abttable td , #projtable td, #contact { display: block; width: 100%;}
 
 }
 
