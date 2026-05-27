@@ -5,21 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-  
 </head>
 <body>
     <nav id="top-nav" style="display: none;">
         <div class="nav-container">
-            
             <div class="nav-links">
                 <a href="javascript:void(0)" onclick="closeAllOverlays()" class="home">Cube</a>
                 
                 <div class="dropdown">
                     <button class="dropbtn">▼</button>
                     <div class="dropdown-content">
-                        <a href="javascript:void(0)" onclick="openOverlay('abt-overlay')">About</a>
-                        <a href="javascript:void(0)" onclick="openOverlay('proj-overlay')">Projects</a>
-                        <a href="javascript:void(0)" onclick="openOverlay('con-overlay')">Contact</a>
+                        <div class="dropdown-content-inner">
+                            <a href="javascript:void(0)" onclick="openOverlay('abt-overlay')">About</a>
+                            <a href="javascript:void(0)" onclick="openOverlay('proj-overlay')">Projects</a>
+                            <a href="javascript:void(0)" onclick="openOverlay('con-overlay')">Contact</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,6 @@
                             I also enjoy craftsmanship, travelling and constant pursuit of learning something new daily.</p>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <h3>Skills</h3>
@@ -47,9 +46,7 @@
                         <li>Cisco, Microsoft office, Power BI, Tableau</li>
                     </td>
                 </tr>
- 
             </table>       
-            <!--<button id="close-abt">Close</button>-->
         </div>
     </div>
 
@@ -60,9 +57,7 @@
                 <li>ollevya23@gmail.com</li>
                 <li><b><a href="https://www.linkedin.com/in/ollevya-undefined-71a843252?trk=contact-info">Linkedin &#8674</a></b></li>
                 <li><b><a href="OllevyaTan_Resume.pdf">Resume &#8674</a></b></li>
-                
             </div>
-            <!--<button id="close-con">Close</button>-->
         </div>
     </div>
 
@@ -78,26 +73,23 @@
                             auto scaling, database, storage, and security solutions to improve scalability and reliability.</p>
                     </td> 
                 </tr>
-                
                 <tr>
                     <td>
                         <h2><a href="Storage Management with Python.pdf">Project 2 &#8674</a></h2>
                         <h3>Storage Management using Python</h3>    
                         <p>Automated secure FTP transfers and file encryption, 
-                        logging access activity using Task Scheduler to reduce manual troubleshooting time.</p>
+                            logging access activity using Task Scheduler to reduce manual troubleshooting time.</p>
                     </td>   
                 </tr>    
-                
                 <tr>
                     <td>
                         <h2><a href="Harden Linux OS.pdf">Project 3 &#8674</a></h2>
                         <h3>Hardened Linux OS</h3>
                         <p>Install firewall and antivirus software,  edit SSH configurations, 
-                        automate regular audits to verify security policies adhered and identify weakness.</p>
+                            automate regular audits to verify security policies adhered and identify weakness.</p>
                     </td>
                 </tr>
             </table>
-            <!--<button id="close-proj">Close</button>-->
         </div>
     </div>
 
@@ -121,6 +113,7 @@
     let raycaster, mouse; 
     let textGroup = new THREE.Group(); 
     let hoveredObject = null;
+    let navGroup = new THREE.Group(); 
 
     init();
 
@@ -134,7 +127,6 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Navigation Tools
         raycaster = new THREE.Raycaster();
         mouse = new THREE.Vector2();
 
@@ -145,7 +137,6 @@
         controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
 
-        // SHINY METALLIC CUBE
         const geometry = new RoundedBoxGeometry(250, 250, 250, 20, 20);
         const material = new THREE.MeshStandardMaterial({ 
             color: 0x36454F, 
@@ -154,9 +145,8 @@
         });
         cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
-        cube.add(textGroup); // Add text to a group inside the cube
+        cube.add(textGroup); 
 
-        // DUST EFFECT
         const particlesGeometry = new THREE.BufferGeometry();
         const posArray = new Float32Array(2500 * 3);
         for(let i = 0; i < 2500 * 3; i++) posArray[i] = (Math.random() - 0.5) * 3000;
@@ -167,21 +157,12 @@
 
         loadFontAndAttachText();
 
-        // Event Listeners
         window.addEventListener('click', onDocumentMouseDown); 
         window.addEventListener('resize', onWindowResize);
         window.addEventListener('pointermove', onPointerMove);
         
-        // Close buttons logic
-        //document.getElementById('close-abt').onclick = () => document.getElementById('abt-overlay').style.display = 'none';
-        //document.getElementById('close-proj').onclick = () => document.getElementById('proj-overlay').style.display = 'none';
-        //document.getElementById('close-con').onclick = () => document.getElementById('con-overlay').style.display = 'none';
-
         animate();
     }
-
-    // Add these to your global variables at the top
-    let navGroup = new THREE.Group(); 
 
     function loadFontAndAttachText() {
         const loader = new THREE.FileLoader();
@@ -192,12 +173,10 @@
             const font = new Font(JSON.parse(str));
             const textMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.5 });
             
-            // Large invisible button material
             const hitBoxMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, color: 0xffffff, side: THREE.FrontSide });
-            const hitBoxGeo = new THREE.PlaneGeometry(160, 20); // Large target area
+            const hitBoxGeo = new THREE.PlaneGeometry(160, 20); 
 
             const addFaceNav = (label, name, pos, rot = [0,0,0]) => {
-                // 1. Visual Text - use .clone() to ensure each has a unique material 
                 const textGeo = new THREE.ShapeGeometry(font.generateShapes(label, 35));
                 centerGeometry(textGeo);
                                 
@@ -207,11 +186,9 @@
  
                 cube.add(textMesh);
 
-                // 2. Hitbox 
                 const hit = new THREE.Mesh(hitBoxGeo, hitBoxMat);
                 let hitPos = pos.map(p => p === 126 ? 128 : (p === -126 ? -127 : p));
                 
-                // Your previous shift logic...
                 hit.position.set(...hitPos);
                 hit.rotation.set(...rot);
                 hit.name = name; 
@@ -223,7 +200,6 @@
             addFaceNav('PROJECTS', 'Projects', [126, 0, 0], [0, Math.PI / 2, 0]);
         });
     }
-
 
     function centerGeometry(geo) {
         geo.computeBoundingBox();
@@ -246,31 +222,25 @@
     }
 
     function onPointerMove(event) {
-        // PASTE THE CHECK HERE --------------------------------------------
         const abtOpen = document.getElementById('abt-overlay').style.display === 'flex';
         const conOpen = document.getElementById('con-overlay').style.display === 'flex';
         const projOpen = document.getElementById('proj-overlay').style.display === 'flex';
 
         if (abtOpen || conOpen || projOpen) {
             document.body.style.cursor = 'default';
-            return; // This stops the rest of the function from running
+            return; 
         }
-        // Update mouse coordinates 
+        
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
-
-        // Check intersections against the cube's children (the hitboxes) 
         const intersects = raycaster.intersectObjects(cube.children);
 
         if (intersects.length > 0) {
             const firstHit = intersects[0].object;
-
-            // If we hit a hitbox (About, Contact, or Projects) 
             if (['About', 'Contact', 'Projects'].includes(firstHit.name)) {
                 document.body.style.cursor = 'pointer';
-
             } else {
                 resetHover();
             }
@@ -283,52 +253,42 @@
         document.body.style.cursor = 'default';
     }
 
-    // Function to close everything
     function closeAllOverlays() {
-        // Hide all possible overlays
         document.getElementById('abt-overlay').style.display = 'none';
         document.getElementById('proj-overlay').style.display = 'none';
         document.getElementById('con-overlay').style.display = 'none';
-        
-        // Hide the nav bar at the same time
         document.getElementById('top-nav').style.display = 'none';
         
-        // Reset cursor and scroll
         document.body.style.cursor = 'default';
         document.body.style.overflow = 'auto';
     }
 
-// Crucial: Add this at the bottom of your script tag so the HTML can see the function
-window.closeAllOverlays = closeAllOverlays;
-
-    // Helper function to open overlays and show nav
     function openOverlay(id) {
-        // 1. First, hide everything to "reset" the screen
         document.getElementById('abt-overlay').style.display = 'none';
         document.getElementById('proj-overlay').style.display = 'none';
         document.getElementById('con-overlay').style.display = 'none';
 
-        // 2. Find the specific overlay you want to open
         const target = document.getElementById(id);
-        
         if (target) {
-            target.style.display = 'flex'; // Use flex to keep your centering
+            target.style.display = 'flex'; 
             document.getElementById('top-nav').style.display = 'block';
-            console.log("Opening overlay: " + id); // This helps you debug!
+            document.body.style.overflow = 'hidden';
+            console.log("Opening overlay: " + id); 
         } else {
             console.error("Could not find overlay with ID: " + id);
         }
     }
 
-    
-
     function onDocumentMouseDown(event) {
-        // Check if any overlay is currently open
+        // FIXED: Stop the 3D click engine from hijacking layout touches
+        if (event.target.closest('#top-nav') || event.target.closest('.dropdown-content')) {
+            return;
+        }
+
         const abtOpen = document.getElementById('abt-overlay').style.display === 'flex';
         const conOpen = document.getElementById('con-overlay').style.display === 'flex';
         const projOpen = document.getElementById('proj-overlay').style.display === 'flex';
 
-        // If an overlay is open, STOP the 3D raycaster so the links can work
         if (abtOpen || conOpen || projOpen) return;
 
         event.preventDefault();
@@ -339,20 +299,13 @@ window.closeAllOverlays = closeAllOverlays;
         const intersects = raycaster.intersectObjects(cube.children);
         if (intersects.length > 0) {
             const target = intersects[0].object.name;
-            if (target === 'About') document.getElementById('abt-overlay').style.display = 'flex';
-            if (target === 'Contact') document.getElementById('con-overlay').style.display = 'flex';
-            if (target === 'Projects') document.getElementById('proj-overlay').style.display = 'flex';
+            if (target === 'About') openOverlay('abt-overlay');
+            if (target === 'Contact') openOverlay('con-overlay');
+            if (target === 'Projects') openOverlay('proj-overlay');
         }
-
-        if (intersects.length > 0) {
-        const target = intersects[0].object.name;
-        if (target === 'About') openOverlay('abt-overlay');
-        if (target === 'Contact') openOverlay('con-overlay');
-        if (target === 'Projects') openOverlay('proj-overlay');
-    }
     }
 
-    // At the very end of your <script type="module">
+    // Expose control functions cleanly to HTML click actions
     window.openOverlay = openOverlay;
     window.closeAllOverlays = closeAllOverlays;
     </script>

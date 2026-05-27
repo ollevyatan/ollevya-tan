@@ -109,10 +109,10 @@ canvas {
 
 /* Submenu layout core box */
 .dropdown-content-inner {
-    background: rgba(20, 20, 20, 0.95);
+    background: transparent;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
     overflow: hidden; 
 }
@@ -120,12 +120,13 @@ canvas {
 /* Menu items inside structural items dropdown lists */
 .dropdown-content a {
     color: rgba(255, 255, 255, 0.8) !important;
+    background: transparent !important; /* Ensures no background fills by default */
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     margin-left: 0 !important; 
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    opacity: 1 !important; /* Forces legible menu layout states */
+    transition: all 0.3s ease; /* Smooth transition for the glow */
 }
 
 .dropdown-content a:last-child { 
@@ -135,7 +136,8 @@ canvas {
 .dropdown-content a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff !important;
-    text-shadow: none;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 
+     0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 #abt-overlay, #con-overlay, #proj-overlay {
