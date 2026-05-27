@@ -203,7 +203,9 @@ a:visited { color: #FAFAFA;}
 
     /* 2. Optimize Nav Bar for Mobile Screens */
     #top-nav {
-        height: 60px; /* Slightly shorter nav bar to save screen space */
+        display: block !important; 
+        background: rgba(10, 10, 10, 0.85) !important; /* Slightly darker background so it stands out over the cube */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-container {

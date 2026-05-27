@@ -162,6 +162,10 @@
         window.addEventListener('pointermove', onPointerMove);
         window.addEventListener('touchend', onDocumentTouchStart, { passive: false });
         
+        if (window.innerWidth <= 600) {
+            document.getElementById('top-nav').style.display = 'block';
+        }
+
         animate();
     }
 
@@ -260,6 +264,12 @@
         document.getElementById('con-overlay').style.display = 'none';
         document.getElementById('top-nav').style.display = 'none';
         
+        if (window.innerWidth > 600) {
+            document.getElementById('top-nav').style.display = 'none';
+        } else {
+            // Keep it visible if on mobile
+            document.getElementById('top-nav').style.display = 'block';
+        }
         document.body.style.cursor = 'default';
         document.body.style.overflow = 'auto';
     }
@@ -281,7 +291,7 @@
     }
 
     function onDocumentMouseDown(event) {
-        
+
         if (event.target.closest('#top-nav') || event.target.closest('.dropdown-content')) {
             return;
         }
