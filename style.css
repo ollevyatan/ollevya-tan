@@ -116,7 +116,7 @@ canvas {
     overflow: hidden; 
 }
 
-/* Menu items inside structural items dropdown lists */
+
 .dropdown-content a {
     color: rgba(255, 255, 255, 0.8);
     background: transparent ; 
@@ -190,7 +190,7 @@ a:visited { color: #FAFAFA;}
 }
 
 @media (max-width: 600px) {
-    /* 1. Scale down images and stack table content */
+
     img {
         width: 170px; 
         height: 230px;
@@ -201,34 +201,34 @@ a:visited { color: #FAFAFA;}
         width: 100%;
     }
 
-    /* 2. Optimize Nav Bar for Mobile Screens */
+
     #top-nav {
         height: 60px;
     }
 
     .nav-container {
-        padding: 0 15px; /* Bring the items closer to the screen edges */
+        padding: 0 15px; 
     }
 
     .logo-text {
-        font-size: 14px; /* Make "PORTFOLIO" text slightly smaller */
+        font-size: 14px; 
         letter-spacing: 1px;
     }
 
     .nav-links {
-        gap: 10px; /* Reduce the space between Home and Explore */
+        gap: 10px;
     }
 
-    /* 3. Make the interactive buttons more compact on phone screens */
+
     .home, .dropbtn {
-        padding: 6px 12px; /* Smaller padding inside the buttons */
-        font-size: 12px;   /* Smaller font size so text doesn't wrap */
-        border-radius: 15px; /* Maintain the pill shape at a smaller scale */
+        padding: 6px 12px; 
+        font-size: 12px;  
+        border-radius: 15px;
     }
 
-    /* 4. Ensure the dropdown options don't slide off the screen */
+   
     .dropdown-content {
-        min-width: 130px; /* Slightly narrower dropdown menu */
+        min-width: 130px; 
     }
     
     .dropdown-content a {

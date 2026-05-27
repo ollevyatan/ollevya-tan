@@ -162,9 +162,7 @@
         window.addEventListener('pointermove', onPointerMove);
         window.addEventListener('touchend', onDocumentTouchStart, { passive: false });
         
-        //if (window.innerWidth <= 600) {
-            //document.getElementById('top-nav').style.display = 'block';
-        //}
+        
 
         animate();
     }
@@ -264,12 +262,7 @@
         document.getElementById('con-overlay').style.display = 'none';
         document.getElementById('top-nav').style.display = 'none';
         
-        //if (window.innerWidth > 600) {
-          //  document.getElementById('top-nav').style.display = 'none';
-        //} else {
-            // Keep it visible if on mobile
-          //  document.getElementById('top-nav').style.display = 'block';
-        //}
+
         document.body.style.cursor = 'default';
         document.body.style.overflow = 'auto';
     }
@@ -317,26 +310,26 @@
     }
 
     function onDocumentTouchStart(event) {
-        // 1. Guard clause: Ignore if tapping the HTML nav bar or dropdown options
+        
         if (event.target.closest('#top-nav') || event.target.closest('.dropdown-content')) {
             return;
         }
 
-        // 2. Check if an overlay is already open
+        
         const abtOpen = document.getElementById('abt-overlay').style.display === 'flex';
         const conOpen = document.getElementById('con-overlay').style.display === 'flex';
         const projOpen = document.getElementById('proj-overlay').style.display === 'flex';
         if (abtOpen || conOpen || projOpen) return;
 
-        // 3. Stop the screen from jumping or zooming accidentally
+        
         event.preventDefault(); 
 
-        // 4. Get the touch coordinates (uses changedTouches[0] for mobile)
+       
         const touch = event.changedTouches[0];
         mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
 
-        // 5. Run the 3D Raycaster
+       
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(cube.children);
 
@@ -348,7 +341,7 @@
         }
     }
 
-    // Expose control functions cleanly to HTML click actions
+    
     window.openOverlay = openOverlay;
     window.closeAllOverlays = closeAllOverlays;
     </script>
