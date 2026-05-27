@@ -1,34 +1,45 @@
+body { 
+    background: radial-gradient(#222, #000); 
+    margin: 0; 
+    box-sizing: border-box; 
+    font-family: sans-serif;
+}
+
+canvas {
+    z-index: 1; /* Keeps the cube in the background */
+}
+
 #top-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw; 
+    height: 70px; /* Fixed height for clean alignment */
     z-index: 10000;
-    display: none; 
-    
+    display: none; /* Removed !important so JS style.display='block' works */
+    pointer-events: auto !important;
 }
 
 .nav-container {
-    margin-top: 10px;
-    display: block !important; 
+    display: flex !important; /* Changed from block to flex for side-by-side positioning */
     width: 100%; 
     height: 100%;
     padding: 0 40px; 
-    justify-content: space-between; /* This forces the logo left and links right */
-    align-items: flex-end;
+    justify-content: space-between; /* Forces logo/name to the left, menus to the right */
+    align-items: center; /* Centered vertically instead of flex-end */
     box-sizing: border-box;
 }
 
 .nav-links {
     display: flex;
-    align-items: center; /* This is the secret for vertical alignment */
+    align-items: center; 
     gap: 20px;
 }
 
+/* Standard styling for general navigation links */
 .nav-links a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
     font-size: 14px;
     opacity: 0.7;
     transition: 0.3s;
@@ -38,7 +49,10 @@
     opacity: 1;
 }
 
-#top-nav span { cursor: pointer; font-weight: bold; }
+#top-nav span { 
+    cursor: pointer; 
+    font-weight: bold; 
+}
 
 /* Dropdown Container */
 .dropdown {
@@ -46,7 +60,7 @@
     display: inline-block;
 }
 
-/* Ensure both elements have the same "base" for the hover effect */
+/* Standardized design profile for Home link and Explore menu button */
 .home, .dropbtn {
     display: flex;
     align-items: center;
@@ -59,6 +73,7 @@
     cursor: pointer;
     padding: 10px 15px;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .dropdown:hover .dropbtn, .home:hover {
@@ -66,78 +81,77 @@
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.1); 
     transform: scale(1.1);
-    border-radius: 4px;
+    border-radius: 20px; /* Kept round styling uniform during transform hover */
 }
 
-
-/* Dropdown Content (Hidden by Default) */
-/* 1. Add an invisible bridge so there is no gap to cross */
+/* Dropdown Options List Container */
 .dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    top: 100%; /* Positions it exactly at the bottom of the nav */
-    padding-top: 10px; /* This is the "bridge" area */
-    background: rgba(119, 119, 119, 0.3); /* Makes the bridge invisible */
+    top: 100%; 
+    padding-top: 10px; /* Invisible hover padding protection bridge */
+    background: transparent; /* Allows clear bridging gaps without boxes showing */
     min-width: 160px;
+    z-index: 100000 !important;
+    pointer-events: auto !important;
 }
 
-/* 2. The actual visible box (The submenu) */
+/* JS Class Variant Toggle (Ensures cross-platform click readiness) */
+.dropdown-content.show {
+    display: block !important;
+}
+
+/* Desktop backup trigger rule fallback */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Submenu layout core box */
 .dropdown-content-inner {
+    background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
-    overflow: hidden; /* Keeps the rounded corners clean */
+    overflow: hidden; 
 }
 
-/* Links inside the dropdown */
+/* Menu items inside structural items dropdown lists */
 .dropdown-content a {
     color: rgba(255, 255, 255, 0.8) !important;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    margin-left: 0 !important; /* Reset the margin from nav-links */
+    margin-left: 0 !important; 
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 1 !important; /* Forces legible menu layout states */
 }
 
-.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:last-child { 
+    border-bottom: none; 
+}
 
 .dropdown-content a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff !important;
-    backdrop-filter: blur(10px);
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
+    text-shadow: none;
 }
 
 #abt-overlay, #con-overlay, #proj-overlay {
-    z-index: 50; /* Moves the content above the 3D cube */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
     height: 100%;
-    /* ensure links are clickable */
+    background: rgba(16, 17, 22, 0.85); 
+    z-index: 2000; /* Overlays drop safely beneath high nav-bars */
+    justify-content: center; 
+    align-items: center;
     pointer-events: auto; 
 }
 
-canvas {
-    z-index: 1; /* Keeps the cube in the background */
-}
-body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-box; font-family: sans-serif;}
-#abt-overlay,#con-overlay, #proj-overlay {
-    display: none; 
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%;
-    background: rgba(16, 17, 22, 0.85); z-index: 2000; 
-    justify-content: center; 
-    align-items: center;
-}
 .content { 
     padding: 10px;
     margin: 40px;
@@ -150,15 +164,18 @@ body { background: radial-gradient(#222, #000); margin: 0; box-sizing: border-bo
     list-style-type: none; 
 }
 
-img {width: 260px; height: 320px; border-radius: 50px;}
+img {
+    width: 260px; 
+    height: 320px; 
+    border-radius: 50px;
+}
 
-a {text-decoration: none;}
+a { text-decoration: none; }
 a:link { color: #FAFAFA;}
 a:hover { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);}
 a:visited { color: #FAFAFA;}
 
-
-#abttable {
+#abttable, #projtable {
     margin-top: 20px;
     width: 100%;
     list-style-type: none;
@@ -172,16 +189,50 @@ a:visited { color: #FAFAFA;}
     line-height: 30px;
 }
 
-#projtable {
-    width: 100%;
-    list-style-type: none;
-    table-layout: fixed;
-}
-
-
 @media (max-width: 600px) {
-    img {width: 170px; height: 230px;}
+    /* 1. Scale down images and stack table content */
+    img {
+        width: 170px; 
+        height: 230px;
+    }
 
-    #abttable td , #projtable td, #contact { display: block; width: 100%;}
+    #abttable td, #projtable td, #contact { 
+        display: block; 
+        width: 100%;
+    }
 
+    /* 2. Optimize Nav Bar for Mobile Screens */
+    #top-nav {
+        height: 60px; /* Slightly shorter nav bar to save screen space */
+    }
+
+    .nav-container {
+        padding: 0 15px; /* Bring the items closer to the screen edges */
+    }
+
+    .logo-text {
+        font-size: 14px; /* Make "PORTFOLIO" text slightly smaller */
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        gap: 10px; /* Reduce the space between Home and Explore */
+    }
+
+    /* 3. Make the interactive buttons more compact on phone screens */
+    .home, .dropbtn {
+        padding: 6px 12px; /* Smaller padding inside the buttons */
+        font-size: 12px;   /* Smaller font size so text doesn't wrap */
+        border-radius: 15px; /* Maintain the pill shape at a smaller scale */
+    }
+
+    /* 4. Ensure the dropdown options don't slide off the screen */
+    .dropdown-content {
+        min-width: 130px; /* Slightly narrower dropdown menu */
+    }
+    
+    .dropdown-content a {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
 }
